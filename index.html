@@ -705,6 +705,47 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
     .back-top.visible { opacity: 1; pointer-events: all; }
+
+    /* MOBILE BOOKING CTA */
+    .mobile-book {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: 5.25rem;
+      }
+
+      .mobile-book {
+        position: fixed;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 220;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--dark);
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.9rem 1.2rem;
+        border-radius: 100px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        transition: background 0.2s;
+      }
+
+      .mobile-book:hover {
+        background: var(--rose);
+      }
+
+      .back-top {
+        bottom: 5.75rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1072,6 +1113,7 @@
     <p class="footer-credit">Website by <a href="https://sitesbyaj.com" target="_blank">Sites by AJ</a></p>
   </footer>
 
+  <a href="#contact" class="mobile-book">BOOK NOW</a>
   <a href="#" class="back-top" id="backTop" aria-label="Back to top">↑</a>
 
   <script>
