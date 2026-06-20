@@ -444,3 +444,13 @@ footer { background: var(--dark); padding: 2.5rem 1.5rem; display: flex; flex-di
 @media (max-width: 360px) {
   .popular-grid { grid-template-columns: 1fr; }
 }
+
+/* FAQ */
+.faq-list { margin-top: 2rem; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q { padding: 1rem 0; cursor: pointer; font-size: 0.88rem; font-weight: 500; color: var(--dark) !important; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; user-select: none; }
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: '+'; font-size: 1.1rem; color: var(--rose); flex-shrink: 0; line-height: 1; }
+.faq-item[open] .faq-q::after { content: '\2212'; }
+.faq-a { font-size: 0.85rem; color: var(--mid) !important; line-height: 1.75; padding-bottom: 1rem; }
