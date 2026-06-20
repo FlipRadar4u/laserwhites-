@@ -1,3 +1,29 @@
+// Burger menu
+const burger = document.getElementById('navBurger');
+const navLinks = document.querySelector('.nav-links');
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(isOpen));
+    burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+  navLinks.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!burger.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+    }
+  });
+}
+
+// Scroll reveal for testimonials
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -8,9 +34,9 @@ const io = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.testi-card').forEach(el => io.observe(el));
 
+// Back to top
 const backTop = document.getElementById('backTop');
 if (backTop) {
   window.addEventListener('scroll', () => {

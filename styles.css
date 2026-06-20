@@ -56,7 +56,43 @@ nav {
 .nav-link:hover { color: var(--dark) !important; }
 .nav-link.active { color: var(--dark) !important; font-weight: 500; }
 
-@media (max-width: 640px) { .nav-links { display: none; } }
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+
+.nav-burger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--dark);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.burger-close { display: none; }
+
+@media (max-width: 640px) {
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: rgba(250,247,244,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(44,36,34,0.08);
+    z-index: 199;
+  }
+  .nav-links.open { display: flex; }
+  .nav-link { font-size: 0.9rem; padding: 0.25rem 0; }
+  [aria-expanded="true"] .burger-open { display: none; }
+  [aria-expanded="true"] .burger-close { display: block; }
+}
 
 .nav-book {
   background: var(--dark);
@@ -269,9 +305,10 @@ nav {
 .service-category { display: none; }
 .service-category.active { display: block; }
 .service-list { display: flex; flex-direction: column; }
-.service-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--border); gap: 1rem; }
+.service-item { display: flex; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--border); gap: 0.5rem; }
 .service-item:first-child { border-top: 1px solid var(--border); }
-.service-name { font-size: 0.88rem; color: #2c2422 !important; }
+.service-item::after { content: ''; flex: 1; border-bottom: 1px dotted var(--border); }
+.service-name { font-size: 0.88rem; color: #2c2422 !important; flex-shrink: 0; }
 .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--rose) !important; white-space: nowrap; flex-shrink: 0; }
 
 /* ABOUT */
