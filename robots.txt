@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://laserwhitesbeautyandaesthetics.co.uk/sitemap.xml
