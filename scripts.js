@@ -39,6 +39,10 @@ document.querySelectorAll('.testi-card').forEach(el => io.observe(el));
 // Back to top
 const backTop = document.getElementById('backTop');
 if (backTop) {
+  backTop.addEventListener('click', e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   window.addEventListener('scroll', () => {
     backTop.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
