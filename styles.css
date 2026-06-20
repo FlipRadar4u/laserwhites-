@@ -307,11 +307,14 @@ nav {
 .service-category { display: none; }
 .service-category.active { display: block; }
 .service-list { display: flex; flex-direction: column; }
-.service-item { display: flex; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--border); gap: 0.5rem; }
+.service-item { display: block; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
 .service-item:first-child { border-top: 1px solid var(--border); }
-.service-item::after { content: ''; flex: 1; border-bottom: 1px dotted var(--border); }
+.service-item-row { display: flex; align-items: center; gap: 0.5rem; }
+.service-item-row::after { content: ''; flex: 1; border-bottom: 1px dotted var(--border); }
 .service-name { font-size: 0.88rem; color: #2c2422 !important; flex-shrink: 0; }
 .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--rose) !important; white-space: nowrap; flex-shrink: 0; }
+.service-desc { font-size: 0.78rem; color: var(--mid) !important; line-height: 1.5; margin-top: 0.2rem; }
+.service-tab-heading { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--light-text); margin-bottom: 0.75rem; font-weight: 500; }
 
 /* ABOUT */
 .about-card { background: var(--warm); border-radius: 16px; padding: 2rem; border: 1px solid var(--border); }
