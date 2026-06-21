@@ -73,7 +73,7 @@ nav {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.5rem;
   color: var(--dark);
   align-items: center;
   justify-content: center;
@@ -380,7 +380,7 @@ footer { background: var(--dark); padding: 2.5rem 1.5rem; display: flex; flex-di
 .footer-social a { width: 38px; height: 38px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; color: rgba(255,255,255,0.6) !important; }
 .footer-social a:hover { background: var(--rose); color: #ffffff !important; }
 .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-.footer-links a { font-size: 0.72rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.3) !important; text-decoration: none; transition: color 0.2s; }
+.footer-links a { font-size: 0.72rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.3) !important; text-decoration: none; transition: color 0.2s; padding: 0.4rem 0; display: inline-block; }
 .footer-links a:hover { color: rgba(255,255,255,0.6) !important; }
 .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.2) !important; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); }
 .footer-credit { font-size: 0.68rem; color: rgba(255,255,255,0.15) !important; }
@@ -415,7 +415,7 @@ footer { background: var(--dark); padding: 2.5rem 1.5rem; display: flex; flex-di
 .whatsapp-float svg { flex-shrink: 0; }
 
 /* BACK TO TOP */
-.back-top { position: fixed; bottom: 1.5rem; left: 1.25rem; width: 40px; height: 40px; background: var(--dark); color: #ffffff !important; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.back-top { position: fixed; bottom: 1.5rem; left: 1.25rem; width: 48px; height: 48px; background: var(--dark); color: #ffffff !important; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
 .back-top.visible { opacity: 1; pointer-events: all; }
 
 /* OPENING HOURS */
@@ -448,7 +448,7 @@ footer { background: var(--dark); padding: 2.5rem 1.5rem; display: flex; flex-di
 
 /* FOOTER CONTACT */
 .footer-contact { display: flex; flex-direction: column; gap: 0.35rem; }
-.footer-contact a { font-size: 0.72rem; color: rgba(255,255,255,0.3) !important; text-decoration: none; transition: color 0.2s; }
+.footer-contact a { font-size: 0.72rem; color: rgba(255,255,255,0.3) !important; text-decoration: none; transition: color 0.2s; padding: 0.35rem 0; display: inline-block; }
 .footer-contact a:hover { color: rgba(255,255,255,0.5) !important; }
 .footer-hours-mini { font-size: 0.68rem; color: rgba(255,255,255,0.2) !important; }
 
