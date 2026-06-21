@@ -23,6 +23,19 @@ if (burger && navLinks) {
   });
 }
 
+// Scroll reveal for popular treatment cards
+const ioCards = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const siblings = [...e.target.parentNode.querySelectorAll(':scope > *')];
+      const idx = siblings.indexOf(e.target);
+      setTimeout(() => e.target.classList.add('show'), idx * 60);
+      ioCards.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.popular-card').forEach(el => ioCards.observe(el));
+
 // Scroll reveal for testimonials
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
