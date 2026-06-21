@@ -448,6 +448,65 @@ footer { background: var(--dark); padding: 2.5rem 1.5rem; display: flex; flex-di
   .popular-grid { grid-template-columns: 1fr; }
 }
 
+/* LIGHTBOX */
+.lb-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(44,36,34,0.93);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+  padding: 1.5rem;
+}
+.lb-overlay.open { opacity: 1; pointer-events: all; }
+.lb-img {
+  max-width: min(90vw, 1100px);
+  max-height: 85vh;
+  width: auto; height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  user-select: none;
+}
+.lb-close {
+  position: absolute; top: 1.25rem; right: 1.5rem;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%; width: 40px; height: 40px;
+  cursor: pointer; color: rgba(255,255,255,0.8);
+  font-size: 1.3rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.lb-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.lb-prev, .lb-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%; width: 48px; height: 48px;
+  cursor: pointer; color: rgba(255,255,255,0.8);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1.2rem;
+}
+.lb-prev:hover, .lb-next:hover { background: rgba(196,149,106,0.55); color: #fff; }
+.lb-prev { left: 1.25rem; }
+.lb-next { right: 1.25rem; }
+.lb-overlay[data-count="1"] .lb-prev,
+.lb-overlay[data-count="1"] .lb-next { display: none; }
+
+@media (hover: hover) {
+  .photo-item, .photo-hero { position: relative; }
+  .photo-item img, .photo-hero img { cursor: zoom-in; }
+  .photo-item::after, .photo-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(44,36,34,0);
+    transition: background 0.25s ease;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .photo-item:hover::after, .photo-hero:hover::after { background: rgba(44,36,34,0.22); }
+}
+
 /* FAQ */
 .faq-list { margin-top: 2rem; }
 .faq-item { border-bottom: 1px solid var(--border); }
