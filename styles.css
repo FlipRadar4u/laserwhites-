@@ -375,7 +375,7 @@ textarea { height: 110px; resize: none; }
 
 /* FOOTER */
 footer { background: var(--dark); padding: 2.5rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-.footer-logo img { height: 72px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.85; }
+.footer-logo img { height: 90px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.85; }
 .footer-social { display: flex; gap: 1rem; align-items: center; }
 .footer-social a { width: 38px; height: 38px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; color: rgba(255,255,255,0.6) !important; }
 .footer-social a:hover { background: var(--rose); color: #ffffff !important; }
