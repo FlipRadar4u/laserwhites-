@@ -150,6 +150,7 @@ nav {
   gap: 1rem;
 }
 
+.nav-logo picture { display: block; }
 .nav-logo img { height: 52px; width: auto; display: block; }
 
 .nav-links { display: flex; gap: 1.75rem; align-items: center; }
@@ -610,16 +611,22 @@ nav {
    TESTIMONIALS
    --------------------------------------------------------------------------- */
 .testi-grid { display: flex; flex-direction: column; gap: 1rem; }
+/* Real reviews vary a lot in length, so the card is a column and the
+   attribution is pushed to the bottom — otherwise the names sit at three
+   different heights across the row. */
 .testi-card {
   background: var(--surface);
   border-radius: 16px;
   padding: 1.75rem;
   border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.5s ease, transform 0.5s ease;
   box-shadow: 0 2px 16px rgba(44, 36, 34, 0.04);
 }
+.testi-card .testi-author { margin-top: auto; padding-top: 0.5rem; }
 .testi-card.show { opacity: 1; transform: none; }
 .testi-stars { font-size: 0.78rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; color: var(--gold-deep); }
 .testi-text {
@@ -630,7 +637,34 @@ nav {
   line-height: 1.6;
   margin-bottom: 0.75rem;
 }
-.testi-author { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.05em; color: var(--light-text) !important; }
+.testi-author {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink) !important;
+}
+.testi-src {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-ink) !important;
+  margin-top: 0.2rem;
+}
+.reviews-link { text-align: center; margin-top: 1.75rem; }
+.reviews-link a {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-ink) !important;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 162, 77, 0.5);
+  padding-bottom: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.reviews-link a:hover { color: var(--ink) !important; border-bottom-color: var(--gold-deep); }
 
 /* ---------------------------------------------------------------------------
    CTA BANNER — marble, not dark
