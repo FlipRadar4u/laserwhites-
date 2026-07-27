@@ -623,6 +623,7 @@ nav {
   margin-bottom: 0.45rem;
 }
 .accreditation-desc { font-size: 0.86rem; color: var(--mid) !important; line-height: 1.75; }
+.accreditation-desc + .accreditation-desc { margin-top: 0.6rem; }
 .accreditation-desc a { color: var(--gold-ink) !important; font-weight: 500; }
 
 /* Small version, repeated in the footer on every page. */
