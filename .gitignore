@@ -1,0 +1,14 @@
+# Internal working notes — not part of the published site
+CLAUDE.md
+MEMORY.md
+ERRORS.md
+
+# Source artwork and stray uploads. The leaflet JPEG is the source the marble
+# and lotus assets were cut from; the shipped WebPs are what the site serves.
+WhatsApp Image *.jpeg
+WhatsApp Image *.jpg
+7dde8e3a-9115-45ea-a293-92ce33d49772.jpg
+
+# OS cruft
+Thumbs.db
+.DS_Store
