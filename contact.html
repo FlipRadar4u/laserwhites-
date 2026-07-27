@@ -166,7 +166,141 @@
     </a>
     <p class="book-note">Choose your treatment, pick a time that suits you, and you're booked. Takes about a minute.</p>
 
-    <div class="contact-info" style="margin-top:2.5rem;">
+  </section>
+
+  <section class="section" id="enquiry">
+    <p class="eyebrow">Not ready to book?</p>
+    <h2 class="section-h">Ask us anything</h2>
+    <p class="section-p">A few quick questions and we'll get back to you. Nothing you don't need to answer.</p>
+
+    <!-- One question at a time when JS runs; a plain form when it doesn't. -->
+    <form class="q-form" id="enquiryForm" action="https://book.laserwhitesbeautyandaesthetics.co.uk/api/enquiry" method="POST">
+      <input type="text" name="_gotcha" class="q-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+      <input type="hidden" name="clinic" value="laserwhites"/>
+
+      <div class="q-progress" aria-hidden="true"><span class="q-progress-bar"></span></div>
+      <p class="q-count" aria-live="polite"></p>
+
+      <fieldset class="q-step" data-step="topic">
+        <legend class="q-legend">What can we help you with?</legend>
+        <div class="q-options">
+          <label class="q-option">
+            <input type="radio" name="topic" value="A treatment question" required/>
+            <span class="q-option-body">
+              <span class="q-option-title">A treatment question</span>
+              <span class="q-option-sub">Prices, what's involved, aftercare, suitability</span>
+            </span>
+          </label>
+          <label class="q-option">
+            <input type="radio" name="topic" value="Changing an appointment"/>
+            <span class="q-option-body">
+              <span class="q-option-title">Changing an appointment</span>
+              <span class="q-option-sub">Move it, cancel it, or check a booking</span>
+            </span>
+          </label>
+          <label class="q-option">
+            <input type="radio" name="topic" value="Something else"/>
+            <span class="q-option-body">
+              <span class="q-option-title">Something else</span>
+              <span class="q-option-sub">Anything that doesn't fit the above</span>
+            </span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q-step" data-step="treatment">
+        <legend class="q-legend">Which treatment is it about?</legend>
+        <p class="q-help">Pick the closest one — we'll work the rest out.</p>
+        <div class="q-field">
+          <label for="qTreatment">Treatment</label>
+          <select id="qTreatment" name="treatment">
+            <option value="">Choose one…</option>
+            <option>Teeth whitening</option>
+            <option>Lashes &amp; brows</option>
+            <option>Facials</option>
+            <option>Waxing</option>
+            <option>Aesthetics (Botox, skin boosters, micro-needling)</option>
+            <option>Body</option>
+            <option>Microsuction earwax removal</option>
+            <option>Japanese Head Spa</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset class="q-step" data-step="firstTime">
+        <legend class="q-legend">Have you had this treatment before?</legend>
+        <p class="q-help">Some treatments need a patch test first — this tells us whether to book one in.</p>
+        <div class="q-options">
+          <label class="q-option">
+            <input type="radio" name="first_time" value="No — first time"/>
+            <span class="q-option-body"><span class="q-option-title">No, it'd be my first time</span></span>
+          </label>
+          <label class="q-option">
+            <input type="radio" name="first_time" value="Yes — had it before"/>
+            <span class="q-option-body"><span class="q-option-title">Yes, I've had it before</span></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q-step" data-step="apptDay">
+        <legend class="q-legend">When was the appointment?</legend>
+        <p class="q-help">A rough day is plenty — it just helps us find you in the diary.</p>
+        <div class="q-field">
+          <label for="qDay">Appointment day</label>
+          <input type="text" id="qDay" name="appointment_day" placeholder="e.g. Thursday 14th, or next Tuesday"/>
+        </div>
+      </fieldset>
+
+      <fieldset class="q-step" data-step="message">
+        <legend class="q-legend">What would you like to know?</legend>
+        <div class="q-field">
+          <label for="qMessage">Your message</label>
+          <textarea id="qMessage" name="message" required placeholder="Type your question here…"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset class="q-step" data-step="contact">
+        <legend class="q-legend">Last one — how do we reach you?</legend>
+        <p class="q-help">An email or a phone number is fine, whichever you prefer.</p>
+        <div class="q-field">
+          <label for="qName">Your name</label>
+          <input type="text" id="qName" name="name" required autocomplete="given-name"/>
+        </div>
+        <div class="q-field">
+          <label for="qEmail">Email</label>
+          <input type="email" id="qEmail" name="email" autocomplete="email"/>
+        </div>
+        <div class="q-field">
+          <label for="qPhone">Or phone</label>
+          <input type="tel" id="qPhone" name="phone" autocomplete="tel"/>
+        </div>
+      </fieldset>
+
+      <p class="q-error" role="alert"></p>
+
+      <div class="q-nav">
+        <button type="button" class="q-back" hidden>&#8592; Back</button>
+        <button type="button" class="q-next btn-primary">Continue</button>
+      </div>
+
+      <div class="q-fallback">
+        <button type="submit" class="submit">Send enquiry</button>
+      </div>
+
+      <div class="q-success" tabindex="-1">
+        <div class="q-success-mark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+        </div>
+        <p class="q-success-h">Thank you — that's sent.</p>
+        <p>We'll come back to you as soon as we can, usually the same day. If it's urgent, give us a ring on <a href="tel:07711253413">07711 253413</a>.</p>
+      </div>
+    </form>
+  </section>
+
+  <section class="section warm">
+
+    <div class="contact-info">
       <div class="contact-row">
         <div class="contact-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -268,5 +402,150 @@
 
   <a href="#" class="back-top" id="backTop" aria-label="Back to top">&#8593;</a>
   <script src="scripts.js"></script>
+  <script>
+  // Enquiry form — turns the plain form above into one question at a time.
+  // If this script never runs, the form still works: every step is visible
+  // and the Send button posts to Formspree normally.
+  (function () {
+    const form = document.getElementById('enquiryForm');
+    if (!form || !window.fetch) return;
+
+    const stepEls = [...form.querySelectorAll('.q-step')];
+    const byName = {};
+    stepEls.forEach(el => { byName[el.dataset.step] = el; });
+
+    const bar     = form.querySelector('.q-progress-bar');
+    const count   = form.querySelector('.q-count');
+    const errEl   = form.querySelector('.q-error');
+    const backBtn = form.querySelector('.q-back');
+    const nextBtn = form.querySelector('.q-next');
+
+    // Which questions each answer leads to. This is the whole point of the
+    // form: nobody is asked about a patch test if they're rearranging a
+    // booking, and nobody picks a treatment if their question isn't about one.
+    const PATHS = {
+      'A treatment question':    ['topic', 'treatment', 'firstTime', 'message', 'contact'],
+      'Changing an appointment': ['topic', 'apptDay', 'message', 'contact'],
+      'Something else':          ['topic', 'message', 'contact']
+    };
+    const path = () => {
+      const picked = form.querySelector('input[name="topic"]:checked');
+      return picked ? PATHS[picked.value] : ['topic'];
+    };
+
+    let i = 0;
+    form.classList.add('is-enhanced');
+    form.noValidate = true;   // native validation would fire on hidden steps
+
+    function render(moveFocus) {
+      const p = path();
+      // Until a topic is picked we genuinely don't know how many questions
+      // there will be, so don't claim a total or offer to send.
+      const known = !!form.querySelector('input[name="topic"]:checked');
+      i = Math.max(0, Math.min(i, p.length - 1));
+      stepEls.forEach(el => el.classList.toggle('is-active', el.dataset.step === p[i]));
+      const isLast = known && i === p.length - 1;
+      bar.style.width = known ? ((i + 1) / p.length * 100) + '%' : '12%';
+      count.textContent = known ? 'Question ' + (i + 1) + ' of ' + p.length : 'Question 1';
+      backBtn.hidden = i === 0;
+      nextBtn.textContent = isLast ? 'Send enquiry' : 'Continue';
+      errEl.textContent = '';
+      if (moveFocus) {
+        const first = byName[p[i]].querySelector('input:not([type=hidden]), select, textarea');
+        if (first) first.focus({ preventScroll: true });
+        // Steps differ in height, so a shorter one can leave the question
+        // tucked up behind the sticky nav. Only nudge when that happens.
+        const top = form.getBoundingClientRect().top;
+        if (top < 80) {
+          window.scrollTo({ top: window.scrollY + top - 100, behavior: 'smooth' });
+        }
+      }
+    }
+
+    function problemWith(step) {
+      const el = byName[step];
+      const radios = el.querySelectorAll('input[type=radio]');
+      if (radios.length && ![...radios].some(r => r.checked)) return 'Please pick an option to carry on.';
+
+      if (step === 'treatment' && !el.querySelector('select').value) {
+        return 'Please choose a treatment — "Not sure yet" is fine.';
+      }
+      if (step === 'apptDay' && !el.querySelector('input').value.trim()) {
+        return 'Roughly when was it? A day of the week is enough.';
+      }
+      if (step === 'message' && el.querySelector('textarea').value.trim().length < 2) {
+        return 'Please tell us a little about what you need.';
+      }
+      if (step === 'contact') {
+        const name  = form.elements.name.value.trim();
+        const email = form.elements.email.value.trim();
+        const phone = form.elements.phone.value.trim();
+        if (!name) return 'Please tell us your name.';
+        if (!email && !phone) return 'Please leave an email or a phone number so we can reply.';
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "That email address doesn't look quite right.";
+      }
+      return '';
+    }
+
+    function go(dir) {
+      const p = path();
+      if (dir > 0) {
+        const problem = problemWith(p[i]);
+        if (problem) { errEl.textContent = problem; return; }
+        const known = !!form.querySelector('input[name="topic"]:checked');
+        if (known && i === p.length - 1) return send();
+        i++;
+      } else {
+        i--;
+      }
+      render(true);
+    }
+
+    async function send() {
+      nextBtn.disabled = true;
+      nextBtn.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (!res.ok) throw new Error(res.status);
+        stepEls.forEach(el => el.classList.remove('is-active'));
+        form.classList.add('is-done');
+        form.querySelector('.q-success').focus();
+      } catch (err) {
+        nextBtn.disabled = false;
+        nextBtn.textContent = 'Send enquiry';
+        errEl.textContent = 'Sorry — that didn\'t send. Please try again, or call us on 07711 253413.';
+      }
+    }
+
+    // Tapping an option moves you on by itself. Arrow-keying between radios
+    // must NOT, or a keyboard user can never reach the option they wanted.
+    let choseByPointer = false;
+    form.addEventListener('pointerup', e => {
+      if (e.target.closest('.q-option')) choseByPointer = true;
+    });
+    form.addEventListener('change', e => {
+      if (choseByPointer && e.target.type === 'radio') {
+        choseByPointer = false;
+        setTimeout(() => go(1), 190);
+      }
+    });
+
+    form.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      const inTextarea = e.target.tagName === 'TEXTAREA';
+      if (!inTextarea || e.metaKey || e.ctrlKey) { e.preventDefault(); go(1); }
+    });
+
+    backBtn.addEventListener('click', () => go(-1));
+    nextBtn.addEventListener('click', () => go(1));
+    form.addEventListener('submit', e => { e.preventDefault(); go(1); });
+
+    render(false);
+  })();
+  </script>
 </body>
 </html>

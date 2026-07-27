@@ -761,6 +761,161 @@ textarea { height: 110px; resize: none; }
 .contact-row a:hover { color: var(--gold-ink) !important; }
 
 /* ---------------------------------------------------------------------------
+   ENQUIRY FORM — one question at a time
+   Progressive enhancement. Without JS every step is visible and the form
+   posts to Formspree normally; the script adds .is-enhanced, which switches
+   it into the one-at-a-time flow.
+   --------------------------------------------------------------------------- */
+.q-form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.9rem 1.6rem 1.6rem;
+  box-shadow: 0 2px 20px rgba(44, 36, 34, 0.05);
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.q-gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+.q-progress { height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.q-progress-bar {
+  display: block; height: 100%; width: 0;
+  background: var(--gold-grad);
+  transition: width 0.35s ease;
+}
+.q-count {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-ink) !important;
+  margin: 0.9rem 0 1rem;
+}
+.q-form:not(.is-enhanced) .q-progress,
+.q-form:not(.is-enhanced) .q-count { display: none; }
+
+/* fieldset reset */
+.q-step { border: 0; padding: 0; margin: 0 0 1.75rem; min-width: 0; }
+.q-form.is-enhanced .q-step { display: none; margin-bottom: 0; }
+.q-form.is-enhanced .q-step.is-active { display: block; animation: qIn 0.32s ease both; }
+@keyframes qIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.q-legend {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.35rem, 4.5vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--ink);
+  padding: 0;
+  margin-bottom: 0.3rem;
+}
+.q-help { font-size: 0.8rem; color: var(--mid) !important; line-height: 1.6; }
+
+.q-options { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.15rem; }
+/* .q-option is a <label>, so it inherits the global uppercase label styling.
+   Reset it — these are sentences, not field captions. */
+.q-option {
+  display: block; cursor: pointer; position: relative;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ink) !important;
+}
+.q-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+.q-option-body {
+  display: block;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 0.95rem 1.1rem;
+  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+}
+.q-option:hover .q-option-body { border-color: rgba(201, 162, 77, 0.7); background: rgba(248, 243, 236, 0.55); }
+.q-option input:focus-visible + .q-option-body { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
+.q-option input:checked + .q-option-body {
+  border-color: var(--gold-deep);
+  background: rgba(240, 220, 174, 0.18);
+  box-shadow: 0 2px 14px rgba(179, 134, 47, 0.14);
+}
+.q-option-title { display: block; font-size: 0.92rem; font-weight: 500; color: var(--ink) !important; }
+.q-option-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--mid) !important;
+  margin-top: 0.15rem;
+  line-height: 1.5;
+}
+
+.q-field { margin-top: 1.15rem; }
+.q-field label { display: block; margin-bottom: 0.4rem; }
+
+.q-error {
+  font-size: 0.78rem;
+  color: #a8322a !important;
+  margin-top: 0.75rem;
+  min-height: 1.15em;
+  line-height: 1.5;
+}
+
+.q-nav { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem; }
+.q-form:not(.is-enhanced) .q-nav { display: none; }
+.q-back {
+  background: none; border: 0;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mid) !important;
+  cursor: pointer;
+  padding: 0.6rem 0.2rem;
+}
+.q-back:hover { color: var(--ink) !important; }
+.q-back[hidden] { display: none; }
+.q-next { margin-left: auto; }
+button.btn-primary { border: 0; cursor: pointer; font-family: 'Jost', sans-serif; }
+button.btn-primary[disabled] { opacity: 0.6; cursor: default; }
+
+/* Shown only when the script has not run. */
+.q-form.is-enhanced .q-fallback { display: none; }
+.q-fallback { margin-top: 1.5rem; }
+
+.q-success { display: none; text-align: center; padding: 0.75rem 0 0.5rem; }
+.q-success:focus { outline: none; }
+.q-form.is-done .q-success { display: block; }
+/* Must out-specify .q-form.is-enhanced .q-step.is-active, or the last
+   question stays on screen behind the thank-you. */
+.q-form.is-done .q-step,
+.q-form.is-done .q-step.is-active,
+.q-form.is-done .q-nav,
+.q-form.is-done .q-progress,
+.q-form.is-done .q-count,
+.q-form.is-done .q-error,
+.q-form.is-done .q-fallback { display: none; }
+.q-success-mark {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-deep);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.1rem;
+  color: var(--gold-deep);
+}
+.q-success p { font-size: 0.88rem; color: var(--mid) !important; line-height: 1.7; }
+/* Beats `.q-success p` — the heading is itself a <p>. */
+.q-success .q-success-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.55rem;
+  color: var(--ink) !important;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.q-success a { color: var(--gold-ink) !important; font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) {
+  .q-form.is-enhanced .q-step.is-active { animation: none; }
+  .q-progress-bar { transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
    OPENING HOURS
    --------------------------------------------------------------------------- */
 .hours-card {
