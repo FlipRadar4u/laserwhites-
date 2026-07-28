@@ -1,7 +1,11 @@
-# Internal working notes — not part of the published site
+# Internal working notes — not part of the published site.
+# Cloudflare Pages serves whatever is in the repo root, so anything committed
+# here is reachable at the domain. These are notes about the business, not
+# content for its customers.
 CLAUDE.md
 MEMORY.md
 ERRORS.md
+DAISY-QUESTIONS.md
 
 # Source artwork and stray uploads. The leaflet JPEG is the source the marble
 # and lotus assets were cut from; the shipped WebPs are what the site serves.

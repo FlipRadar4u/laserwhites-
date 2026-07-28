@@ -567,6 +567,10 @@ nav {
   flex-shrink: 0;
 }
 .service-desc { font-size: 0.78rem; color: var(--mid) !important; line-height: 1.55; margin-top: 0.25rem; }
+/* Each menu line now points at that treatment's own page. Underlined only on
+   hover so a list of fifty items does not read as a wall of links. */
+.service-link { color: inherit !important; text-decoration: none; }
+.service-link:hover { color: var(--gold-ink) !important; text-decoration: underline; text-underline-offset: 3px; }
 .service-tab-heading {
   font-size: 0.68rem;
   text-transform: uppercase;
@@ -1232,6 +1236,131 @@ footer {
     border-radius: inherit;
   }
   .photo-item:hover::after, .photo-hero:hover::after { background: rgba(44, 36, 34, 0.2); }
+}
+
+/* ---------------------------------------------------------------------------
+   TREATMENT PAGES
+   One page per treatment. Everything here is additive: the pages are built
+   almost entirely from existing components (.page-hero, .section, .stats,
+   .service-list, .faq-list, .popular-card, .cta-banner) and these few pieces
+   cover only what those could not already do.
+   --------------------------------------------------------------------------- */
+
+/* Breadcrumb above the page title. Mirrors the BreadcrumbList schema. */
+.tx-crumb {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--light-text) !important;
+  margin-bottom: 1rem;
+}
+.tx-crumb a { color: var(--mid) !important; text-decoration: none; }
+.tx-crumb a:hover { color: var(--gold-ink) !important; }
+.tx-crumb span { color: var(--gold); padding: 0 0.4rem; }
+
+/* The facts strip reuses .stats. Ear piercing has no rebooking interval, so
+   it needs a two-column variant rather than an empty third cell. */
+.stats.two { grid-template-columns: repeat(2, 1fr); }
+/* "From £40" and "6 months" are longer than "10+", so the numeral steps down
+   a little here to stop it wrapping on a narrow phone. */
+.stats.facts .stat-n { font-size: 1.65rem; }
+
+/* Body prose. Wider measure than .section-p and left-aligned, because these
+   are paragraphs to read rather than a centred standfirst. */
+.tx-p {
+  font-size: 0.9rem;
+  color: var(--mid) !important;
+  line-height: 1.85;
+  margin-bottom: 1rem;
+  max-width: 68ch;
+}
+.tx-p:last-child { margin-bottom: 0; }
+.tx-p strong { color: var(--ink) !important; font-weight: 500; }
+.tx-p a { color: var(--gold-ink) !important; text-decoration: underline; text-underline-offset: 3px; }
+
+.tx-h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink) !important;
+  margin: 2rem 0 0.75rem;
+}
+.tx-h3:first-child { margin-top: 0; }
+
+/* Numbered "what to expect" walkthrough. Counter rather than a real list
+   marker so the numeral can carry the gold. */
+.tx-steps { list-style: none; counter-reset: step; margin-top: 0.5rem; }
+.tx-steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 1.15rem 2.6rem;
+  font-size: 0.88rem;
+  color: var(--mid) !important;
+  line-height: 1.75;
+  max-width: 66ch;
+}
+.tx-steps li:last-child { padding-bottom: 0; }
+.tx-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -0.1rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid rgba(201, 162, 77, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: var(--gold-ink);
+  background: var(--surface);
+}
+
+/* Bordered card used for the good-to-know block and the pairing note. */
+.tx-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 2px 16px rgba(44, 36, 34, 0.04);
+  margin-top: 1.5rem;
+}
+.tx-card .tx-h3 { margin-top: 0; font-size: 1.2rem; }
+/* The card is already a narrow measure. Capping the paragraph again inside it
+   just leaves an empty right half. */
+.tx-card .tx-p, .tx-card .tx-ticks li { max-width: none; }
+
+/* Plain tick list for "who it suits" / "what's included". */
+.tx-ticks { list-style: none; margin-top: 0.5rem; }
+.tx-ticks li {
+  position: relative;
+  padding: 0 0 0.6rem 1.6rem;
+  font-size: 0.86rem;
+  color: var(--mid) !important;
+  line-height: 1.7;
+  max-width: 66ch;
+}
+.tx-ticks li:last-child { padding-bottom: 0; }
+.tx-ticks li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-deep);
+}
+
+/* Related treatments reuse .popular-card, which scripts.js already reveals on
+   scroll. These have no icon, so the name needs the top spacing back. */
+.popular-card.tx-rel .popular-name { margin-top: 0.1rem; }
+
+@media (min-width: 720px) {
+  .tx-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+  .tx-two .tx-card { margin-top: 0; }
 }
 
 /* ---------------------------------------------------------------------------
