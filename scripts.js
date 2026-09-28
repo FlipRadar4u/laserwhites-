@@ -128,3 +128,22 @@ if (backTop) {
     backTop.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
 }
+
+// Salon video: only download and play once it scrolls into view.
+// Visitors who prefer reduced motion get the still poster and a play button instead.
+(function () {
+  const videos = document.querySelectorAll('.salon-video video');
+  if (!videos.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    videos.forEach(v => { v.controls = true; });
+    return;
+  }
+  const vio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.play().catch(() => {});
+      vio.unobserve(e.target);
+    });
+  }, { rootMargin: '200px' });
+  videos.forEach(v => vio.observe(v));
+})();
